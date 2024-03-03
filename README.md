@@ -121,3 +121,146 @@ Finally, we specify the bottom sheet itself:
 
 The `ref` and `snapPoints` parameters connect the bottom sheet to the `bottomSheetRef` and `snapPoints` variables we defined earlier. The parameter named `index` specifies which snap point the bottom sheet should be at when it first appears. Here we chose 0, which makes it visible at the first snap point we defined earlier. If we wanted it to start out hidden, we could have specified -1. Finally, `enablePanDownToClose` specifies whether the user can dismiss the bottom sheet by flinging it down.
 
+## Bottom-Sheet-Ready Views
+
+There is a subtle problem with including scrollable content inside a bottom sheet: How does the system distinguish between the user scrolling through the content, and moving the bottom sheet itself? Fortunately, we have a solution: The bottom sheet library comes with a full suite of integrated scrollable components. These include a [ScrollView](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetscrollview), [FlatList](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetflatlist), [SectionList](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetsectionlist), [VirtualizedList](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetvirtualizedlist), and [TextInput](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheettextinput). All are designed to work as drop-in replacements for the standard React Native components.
+
+Here's an example project that uses a SectionList:
+
+```
+import React, { useCallback, useMemo, useRef } from 'react';
+import {Button, StyleSheet, Text, View, SafeAreaView} from 'react-native';
+
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import BottomSheet, {BottomSheetSectionList} from '@gorhom/bottom-sheet';
+
+export default function App() {
+  // Tracks the state of the bottom drawer
+  const bottomSheetRef = useRef(null);
+  // The positions that the bottom drawer will snap to
+  const snapPoints = useMemo(() => ['25%', '100%'], []);
+
+  // Data for the list example
+  const sections = useMemo(() => {
+    return [
+      {title: 'Languages', data: ['C', 'C++', 'Java', 'JavaScript', 'Python']},
+      {title: 'Frameworks', data: ['Django', 'React Native']}
+    ];
+  });
+
+  // Render a section header
+  const renderSectionHeader = useCallback(({section}) => (
+    <Text style={styles.sectionHeader}>{section.title}</Text>
+  ), []);
+
+  // Render a list entry
+  const renderItem = useCallback(({item}) => (
+    <Text style={styles.entry}>{item}</Text>
+  ), []);
+
+  // Returns the lead header component for the list
+  const renderListHeader = useCallback(() => (
+    <Text style={styles.listHeader}>My Skills</Text>
+  ), []);
+
+  return (
+    <SafeAreaView style={styles.safeContainer}>
+      <GestureHandlerRootView style={styles.container}>
+        <Button
+            title="Open Bottom Sheet"
+            onPress={() => {bottomSheetRef.current.snapToIndex(0);}}
+            />
+        <BottomSheet
+              ref={bottomSheetRef}
+              index={0}
+              snapPoints={snapPoints}
+              enablePanDownToClose={true}
+              >
+            <BottomSheetSectionList
+                sections={sections}
+                renderSectionHeader={renderSectionHeader}
+                renderItem={renderItem}
+                ListHeaderComponent={renderListHeader} />
+        </BottomSheet>
+      </GestureHandlerRootView>
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#def',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  safeContainer: {
+    flex: 1,
+  },
+  sectionHeader: {
+    fontWeight: 'bold',
+    fontSize: 20
+  },
+  entry: {
+    fontWeight: 'normal',
+    fontSize: 16
+  },
+  listHeader: {
+    fontWeight: 'bold',
+    fontSize: 24
+  }
+});
+```
+
+Let's go over the changes to `App()`.
+
+First, we define the data that our section list will use:
+
+```
+const sections = useMemo(() => {
+  return [
+    {title: 'Languages', data: ['C', 'C++', 'Java', 'JavaScript', 'Python']},
+    {title: 'Frameworks', data: ['Django', 'React Native']}
+  ];
+});
+```
+
+This comes as a list of sections, where each section is an object containing a `title` member and a `data` member. The `data` member must be another list.
+
+We have a callback for rendering a section header:
+
+```
+const renderSectionHeader = useCallback(({section}) => (
+  <Text style={styles.sectionHeader}>{section.title}</Text>
+), []);
+```
+
+Since our section title objects are just strings, we simply create a text view containing that string.
+
+We have a callback for rendering an individual entry:
+
+```
+const renderItem = useCallback(({item}) => (
+  <Text style={styles.entry}>{item}</Text>
+), []);
+```
+
+Same story: Our entries are just strings, so we wrap them in text views.
+
+I also want to add a special header at the start of the list, so here's a callback for that:
+
+```
+const renderListHeader = useCallback(() => (
+  <Text style={styles.listHeader}>My Skills</Text>
+), []);
+```
+
+Now, all we have to do when creating the list is pass it the data and callbacks we already created:
+
+```
+<BottomSheetSectionList
+    sections={sections}
+    renderSectionHeader={renderSectionHeader}
+    renderItem={renderItem}
+    ListHeaderComponent={renderListHeader} />
+```
