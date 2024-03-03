@@ -112,7 +112,7 @@ We create a `Button` that pops up the bottom sheet:
     />
 ```
 
-The call `snapToIndex(0)` moves the bottom sheet to one of the snap points specified earlier. In this case, we specify index 0, which earlier was defined to 25% of the screen.
+The call `snapToIndex(0)` moves the bottom sheet to one of the snap points specified earlier. In this case, we specify index 0, which earlier was defined to 25% of the screen. (This and other methods are [listed in the official documentation](https://ui.gorhom.dev/components/bottom-sheet/methods).)
 
 Finally, we specify the bottom sheet itself:
 
@@ -126,6 +126,8 @@ Finally, we specify the bottom sheet itself:
 ```
 
 The `ref` and `snapPoints` parameters connect the bottom sheet to the `bottomSheetRef` and `snapPoints` variables we defined earlier. The parameter named `index` specifies which snap point the bottom sheet should be at when it first appears. Here we chose 0, which makes it visible at the first snap point we defined earlier. If we wanted it to start out hidden, we could have specified -1. Finally, `enablePanDownToClose` specifies whether the user can dismiss the bottom sheet by flinging it down.
+
+You can find the [full set of properties listed in the official documentation](https://ui.gorhom.dev/components/bottom-sheet/props).
 
 ## Bottom-Sheet-Ready Views
 
