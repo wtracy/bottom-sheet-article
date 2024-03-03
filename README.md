@@ -31,15 +31,21 @@ yarn add @gorhom/bottom-sheet react-native-reanimated react-native-gesture-handl
 
 Then follow steps 2 and 3 from the [React Native Reanimated install instructions](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/getting-started/#step-2-add-reanimateds-babel-plugin).
 
+Finally, if you are using Xcode, update your CocoaPods:
+
+```
+npx pod-install
+```
+
 ## Basic Code Example
 
 Here's an example `App.js` file (`App.tsx` if your project was set up with Typescript):
 
 ```javascript
-import React, { useMemo, useRef } from 'react';
+import React, {useMemo, useRef} from 'react';
 import {Button, View, StyleSheet, Text, SafeAreaView} from 'react-native';
 
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import BottomSheet, {BottomSheetSectionList} from '@gorhom/bottom-sheet';
 
 export default function App() {
@@ -56,11 +62,11 @@ export default function App() {
             onPress={() => {bottomSheetRef.current.snapToIndex(0);}}
             />
         <BottomSheet
-              ref={bottomSheetRef}
-              index={0}
-              snapPoints={snapPoints}
-              enablePanDownToClose={true}
-              >
+            ref={bottomSheetRef}
+            index={0}
+            snapPoints={snapPoints}
+            enablePanDownToClose={true}
+            >
           <View>
             <Text>Please hire me.</Text>
           </View>
@@ -85,7 +91,7 @@ const styles = StyleSheet.create({
 
 Let's step through the `App()` function.
 
-The bottom sheet will need to track its state--whether it's visible on screen, and how far up the screen it currently is. We create a ref to track this state:
+The bottom sheet will need to track its state--whether it's visible, and how far up the screen it currently extends. We create a ref to track this state:
 
 ```javascript
 const bottomSheetRef = useRef(null);
@@ -130,10 +136,10 @@ There is a subtle problem with including scrollable content inside a bottom shee
 Here's an example project that uses a SectionList:
 
 ```javascript
-import React, { useCallback, useMemo, useRef } from 'react';
+import React, {useCallback, useMemo, useRef} from 'react';
 import {Button, StyleSheet, Text, View, SafeAreaView} from 'react-native';
 
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import BottomSheet, {BottomSheetSectionList} from '@gorhom/bottom-sheet';
 
 export default function App() {
@@ -173,16 +179,17 @@ export default function App() {
             onPress={() => {bottomSheetRef.current.snapToIndex(0);}}
             />
         <BottomSheet
-              ref={bottomSheetRef}
-              index={0}
-              snapPoints={snapPoints}
-              enablePanDownToClose={true}
-              >
-            <BottomSheetSectionList
-                sections={sections}
-                renderSectionHeader={renderSectionHeader}
-                renderItem={renderItem}
-                ListHeaderComponent={renderListHeader} />
+            ref={bottomSheetRef}
+            index={0}
+            snapPoints={snapPoints}
+            enablePanDownToClose={true}
+            >
+          <BottomSheetSectionList
+              sections={sections}
+              renderSectionHeader={renderSectionHeader}
+              renderItem={renderItem}
+              ListHeaderComponent={renderListHeader}
+              />
         </BottomSheet>
       </GestureHandlerRootView>
     </SafeAreaView>
@@ -264,5 +271,6 @@ Now, all we have to do when creating the list is pass it the data and callbacks 
     sections={sections}
     renderSectionHeader={renderSectionHeader}
     renderItem={renderItem}
-    ListHeaderComponent={renderListHeader} />
+    ListHeaderComponent={renderListHeader}
+    />
 ```
