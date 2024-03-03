@@ -1,7 +1,7 @@
 # Using a bottom sheet with React Native
 ## Introduction
 
-Bottom sheets are UI concept in which new information appears "peeking in" from the bottom of the screen. This allows the user to scan the top part of the data without losing their current context. If they want to see the rest, they simply swipe up on the bottom sheet. Otherwise, they can dismiss it.
+Bottom sheets are UI concept in which new information appears "peeking in" from the bottom of the screen. This allows the user to scan the top part of the data without losing their current context. If they want to see the rest, they simply swipe up on the bottom sheet. Otherwise, they can dismiss it by swiping down.
 
 Here's an example of Apple Maps using a bottom sheet to display information about an address:
 
@@ -46,7 +46,7 @@ import React, {useMemo, useRef} from 'react';
 import {Button, View, StyleSheet, Text, SafeAreaView} from 'react-native';
 
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import BottomSheet, {BottomSheetSectionList} from '@gorhom/bottom-sheet';
+import BottomSheet from '@gorhom/bottom-sheet';
 
 export default function App() {
   // Tracks the state of the bottom drawer
@@ -67,9 +67,7 @@ export default function App() {
             snapPoints={snapPoints}
             enablePanDownToClose={true}
             >
-          <View>
-            <Text>Please hire me.</Text>
-          </View>
+          <Text>Please hire me.</Text>
         </BottomSheet>
       </GestureHandlerRootView>
     </SafeAreaView>
