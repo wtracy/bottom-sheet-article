@@ -33,7 +33,7 @@ Then follow steps 2 and 3 from the [React Native Reanimated install instructions
 
 Here's an example `App.js` file (`App.tsx` if your project was set up with Typescript):
 
-```
+```javascript
 import React, { useMemo, useRef } from 'react';
 import {Button, View, StyleSheet, Text, SafeAreaView} from 'react-native';
 
@@ -85,13 +85,13 @@ Let's step through the `App()` function.
 
 The bottom sheet will need to track its state--whether it's visible on screen, and how far up the screen it currently is. We create a ref to track this state:
 
-```
+```javascript
 const bottomSheetRef = useRef(null);
 ```
 
 The bottom sheet can snap itself to several locations on screen. We specify these snap points as an array:
 
-```
+```javascript
 const snapPoints = useMemo(() => ['25%', '100%'], []);
 ```
 
@@ -99,7 +99,7 @@ In order for the bottom sheet to work correctly, the root view of the applicatio
 
 We create a `Button` that pops up the bottom sheet:
 
-```
+```javascript
 <Button
     title="Open Bottom Sheet"
     onPress={() => {bottomSheetRef.current.snapToIndex(0);}}
@@ -110,7 +110,7 @@ The call `snapToIndex(0)` moves the bottom sheet to one of the snap points speci
 
 Finally, we specify the bottom sheet itself:
 
-```
+```javascript
 <BottomSheet
       ref={bottomSheetRef}
       index={0}
@@ -127,7 +127,7 @@ There is a subtle problem with including scrollable content inside a bottom shee
 
 Here's an example project that uses a SectionList:
 
-```
+```javascript
 import React, { useCallback, useMemo, useRef } from 'react';
 import {Button, StyleSheet, Text, View, SafeAreaView} from 'react-native';
 
@@ -216,7 +216,7 @@ Let's go over the changes to `App()`.
 
 First, we define the data that our section list will use:
 
-```
+```javascript
 const sections = useMemo(() => {
   return [
     {title: 'Languages', data: ['C', 'C++', 'Java', 'JavaScript', 'Python']},
@@ -229,7 +229,7 @@ This comes as a list of sections, where each section is an object containing a `
 
 We have a callback for rendering a section header:
 
-```
+```javascript
 const renderSectionHeader = useCallback(({section}) => (
   <Text style={styles.sectionHeader}>{section.title}</Text>
 ), []);
@@ -239,7 +239,7 @@ Since our section title objects are just strings, we simply create a text view c
 
 We have a callback for rendering an individual entry:
 
-```
+```javascript
 const renderItem = useCallback(({item}) => (
   <Text style={styles.entry}>{item}</Text>
 ), []);
@@ -249,7 +249,7 @@ Same story: Our entries are just strings, so we wrap them in text views.
 
 I also want to add a special header at the start of the list, so here's a callback for that:
 
-```
+```javascript
 const renderListHeader = useCallback(() => (
   <Text style={styles.listHeader}>My Skills</Text>
 ), []);
@@ -257,7 +257,7 @@ const renderListHeader = useCallback(() => (
 
 Now, all we have to do when creating the list is pass it the data and callbacks we already created:
 
-```
+```javascript
 <BottomSheetSectionList
     sections={sections}
     renderSectionHeader={renderSectionHeader}
