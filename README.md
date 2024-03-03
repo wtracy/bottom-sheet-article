@@ -89,7 +89,7 @@ The bottom sheet will need to track its state--whether it's visible on screen, a
 const bottomSheetRef = useRef(null);
 ```
 
-The bottom sheet can snap itself to several locations on screen. We configure these snap points by creating an array of descriptions:
+The bottom sheet can snap itself to several locations on screen. We specify these snap points as an array:
 
 ```
 const snapPoints = useMemo(() => ['25%', '100%'], []);
