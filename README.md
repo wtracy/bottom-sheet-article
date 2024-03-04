@@ -1,7 +1,7 @@
 # Using a bottom sheet with React Native
 ## Introduction
 
-Bottom sheets are UI concept in which new information appears "peeking in" from the bottom of the screen. This allows the user to scan the top part of the data without losing their current context. If they want to see the rest, they simply swipe up on the bottom sheet. Otherwise, they can dismiss it by swiping down.
+Bottom sheets are UI concept in which new information appears "peeking in" from the bottom of the screen. This allows the user to see some of the data without losing their current context. If they want to see the rest, they simply swipe up on the bottom sheet. Otherwise, they can dismiss it by swiping down.
 
 Here's an example of Apple Maps using a bottom sheet to display information about an address:
 
@@ -93,7 +93,7 @@ Here's what it looks like in the emulator:
 
 Let's step through the `App()` function.
 
-The bottom sheet will need to track its state--whether it's visible, and how far up the screen it currently extends. We create a ref to track this state:
+The bottom sheet will need to track its state: how far up the screen it currently extends, if it's visible at all. We create a ref to track this state:
 
 ```javascript
 const bottomSheetRef = useRef(null);
@@ -116,7 +116,7 @@ We create a `Button` that pops up the bottom sheet:
     />
 ```
 
-The call `snapToIndex(0)` moves the bottom sheet to one of the snap points specified earlier. In this case, we specify index 0, which earlier was defined to 25% of the screen. (This and other methods are [listed in the official documentation](https://ui.gorhom.dev/components/bottom-sheet/methods).)
+The call `snapToIndex(0)` moves the bottom sheet to one of the snap points specified earlier. In this case, we specify index 0, which earlier was defined to 25% of the screen. (This and other methods are listed in [the official documentation](https://ui.gorhom.dev/components/bottom-sheet/methods).)
 
 Finally, we specify the bottom sheet itself:
 
@@ -131,7 +131,7 @@ Finally, we specify the bottom sheet itself:
 
 The `ref` and `snapPoints` parameters connect the bottom sheet to the `bottomSheetRef` and `snapPoints` variables we defined earlier. The parameter named `index` specifies which snap point the bottom sheet should be at when it first appears. Here we chose 0, which makes it visible at the first snap point we defined earlier. If we wanted it to start out hidden, we could have specified -1. Finally, `enablePanDownToClose` specifies whether the user can dismiss the bottom sheet by flinging it down.
 
-You can find the [full set of properties listed in the official documentation](https://ui.gorhom.dev/components/bottom-sheet/props).
+You can find the [full set of properties in the official documentation](https://ui.gorhom.dev/components/bottom-sheet/props).
 
 ## Bottom-Sheet-Ready Views
 
@@ -158,7 +158,7 @@ export default function App() {
       {title: 'Languages', data: ['C', 'C++', 'Java', 'JavaScript', 'Python']},
       {title: 'Frameworks', data: ['Django', 'React Native']}
     ];
-  });
+  }, []);
 
   // Render a section header
   const renderSectionHeader = useCallback(({section}) => (
@@ -239,7 +239,7 @@ const sections = useMemo(() => {
     {title: 'Languages', data: ['C', 'C++', 'Java', 'JavaScript', 'Python']},
     {title: 'Frameworks', data: ['Django', 'React Native']}
   ];
-});
+}, []);
 ```
 
 This comes as a list of sections, where each section is an object containing a `title` member and a `data` member. The `data` member must be another list.
