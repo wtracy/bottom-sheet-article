@@ -87,6 +87,10 @@ const styles = StyleSheet.create({
 });
 ```
 
+Here's what it looks like in the emulator:
+
+![Screenshot of first example](/SimpleExample.png)
+
 Let's step through the `App()` function.
 
 The bottom sheet will need to track its state--whether it's visible, and how far up the screen it currently extends. We create a ref to track this state:
@@ -220,6 +224,10 @@ const styles = StyleSheet.create({
   }
 });
 ```
+
+Here's what it looks like in the emulator:
+
+![Screenshot of HeaderList example](/HeaderListExample.png)
 
 Let's go over the changes to `App()`.
 
