@@ -23,7 +23,7 @@ npx expo install @gorhom/bottom-sheet react-native-reanimated react-native-gestu
 
 ### React Native CLI
 
-First install the required packages with this command from your project root directory:
+First install the required packages by issuing this command from your project root directory:
 
 ```
 yarn add @gorhom/bottom-sheet react-native-reanimated react-native-gesture-handler
@@ -135,7 +135,7 @@ You can find the [full set of properties listed in the official documentation](h
 
 ## Bottom-Sheet-Ready Views
 
-There is a subtle problem with including scrollable content inside a bottom sheet: How does the system distinguish between the user scrolling through the content, and moving the bottom sheet itself? Fortunately, we have a solution: The bottom sheet library comes with a full suite of integrated scrollable components. These include a [ScrollView](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetscrollview), [FlatList](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetflatlist), [SectionList](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetsectionlist), and [VirtualizedList](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetvirtualizedlist), as well as a [TextInput](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheettextinput). All are designed to work as drop-in replacements for the standard React Native components.
+There is a subtle problem with including scrollable content inside a bottom sheet: How does the system distinguish between the user scrolling through the content inside the bottom sheet versus the user moving the bottom sheet itself? Fortunately, we have a solution: The bottom sheet library comes with a full suite of integrated scrollable components. These include a [ScrollView](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetscrollview), [FlatList](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetflatlist), [SectionList](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetsectionlist), and [VirtualizedList](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetvirtualizedlist). (There's also a [TextInput](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheettextinput)!) All are designed to work as drop-in replacements for the standard React Native components.
 
 Here's an example project that uses a SectionList:
 
