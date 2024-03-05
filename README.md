@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
 
 Here's what it looks like in the emulator:
 
-![Screenshot of HeaderList example](/HeaderListExample.png)
+![Screenshot of HeaderList example](/HeaderExample.png)
 
 Let's go over the changes to `App()`.
 
