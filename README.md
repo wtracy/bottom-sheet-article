@@ -1,4 +1,4 @@
-# Using a bottom sheet with React Native
+# Using a Bottom Sheet With React Native
 ## Introduction
 
 Bottom sheets are UI concept in which new information appears "peeking in" from the bottom of the screen. This allows the user to see some of the data without losing their current context. If they want to see the rest, they simply swipe up on the bottom sheet. Otherwise, they can dismiss it by swiping down.
