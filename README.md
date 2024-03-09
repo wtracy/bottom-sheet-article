@@ -282,3 +282,11 @@ Now, all we have to do when creating the list is pass it the data and callbacks 
     ListHeaderComponent={renderListHeader}
     />
 ```
+
+## Conclusion
+
+Bottom sheets are increasingly common in mobile apps with data-dense UIs. They make navigating large amounts of information easier on small screens. Users are coming to expect them in a wide variety of verticals.
+
+Gorhom's bottom sheet library is fully-featured and easy to add to your app. You can visit the [project website](https://ui.gorhom.dev/components/bottom-sheet/) for more information not included here.
+
+Happy hacking!
