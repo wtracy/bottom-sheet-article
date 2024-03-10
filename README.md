@@ -43,7 +43,7 @@ Here's an example `App.js` file (`App.tsx` if your project was set up with Types
 
 ```javascript
 import React, {useMemo, useRef} from 'react';
-import {Button, StyleSheet, Text, SafeAreaView} from 'react-native';
+import {Button, SafeAreaView, StyleSheet, Text} from 'react-native';
 
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import BottomSheet from '@gorhom/bottom-sheet';
@@ -141,7 +141,7 @@ Here's an example project that uses a SectionList:
 
 ```javascript
 import React, {useCallback, useMemo, useRef} from 'react';
-import {Button, StyleSheet, Text, SafeAreaView} from 'react-native';
+import {Button, SafeAreaView, StyleSheet, Text} from 'react-native';
 
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import BottomSheet, {BottomSheetSectionList} from '@gorhom/bottom-sheet';
